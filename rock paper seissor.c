@@ -1,8 +1,8 @@
 #include<stdio.h>
-#include<stdlib.h>
+#include<string.h>
 #include<stdbool.h>
+#include<stdlib.h>
 #include<time.h>
-
 int guneretrendom()
 {
     srand(time(NULL));
@@ -24,12 +24,12 @@ int forinput(char* a)
 }
 
 
-void forwin(int* x,int* y)
+void forwin(int* x,int* y,int *z,int* a)
 {
     if((*x==2 && *y==1) || (*x==0 && *y==2) || (*x==1 && *y==0)) //x=ai, y=player and 0=r,1=p,2=s
-        printf("\tAI WIN");
+    {    printf("\tAI WIN"); *z+=1;}
     else if ((*x==2 && *y==0) || (*x==0 && *y==1) || (*x==1 && *y==2) ) 
-        printf("\tPLAYER WIN");
+    {    printf("\tPLAYER WIN"); *a+=1;}
     else
     printf("\tDRAW");
     
@@ -48,7 +48,7 @@ void printline()
 int main()
 {
     char ch;
-    int x,y,f;
+    int x,y,f,z=0,a=0;
     while (true){
 
     y = forinput(&ch);
@@ -69,7 +69,7 @@ int main()
 
     printline();
 
-    forwin(&x,&y);
+    forwin(&x,&y,&z,&a);
 
     printline();
 
@@ -80,10 +80,32 @@ int main()
     if(f!=0 || f!=0) 
     {
         break;
-        system("cls");
+        
     }
 
     }
+
+    printf("\nPLAYER wins %d times\t",z);
+    printf(" AI wins %d times\n\n", a);
+
+    if(z>a){
+        printline();
+        printf("\nPlayer is the winner.");
+        printline();
+    }
+    else if(z<a){
+        printline();
+        printf("\nAI is the winner.");
+        printline();
+    }
+    else{
+        printline();
+        printf("\nIt's a tie.");
+        printline();
+    }
+
+    // system("cls");
+
     
     return 0;
 }
