@@ -3,6 +3,7 @@
 #include<stdbool.h>
 #include<stdlib.h>
 #include<time.h>
+
 int guneretrendom()
 {
     srand(time(NULL));
